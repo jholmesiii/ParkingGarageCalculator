@@ -7,31 +7,37 @@ using namespace std;
 
 int main()
 {
-	double surcharge[5] = { 0, 0, 0, 0, 0 };
-	double hrs[5] = { 0, 0, 0, 0, 0 };
-	double totalhrs, totalsur;
-	int cars, x;
+	double totalHours = 0;
+	double totalSurcharge = 0;
+	int cars;
+	int xOne = 1;
+	int yOne = 1;
 
 	cout << "How many cars parked today?" << endl;
 	cin >> cars;
 
-	for (x = 1; x < cars + 1; x++)
-	{
-		cout << "Input number of hours the customer parked" << endl;
-		cin >> hrs[x];
-		cout << endl;
-		surcharge[x] = CalculateCharges(hrs[x]);
-	}
+	double* surcharge = new double(cars);
+	double* hours = new double(cars);
 
-	totalhrs = hrs[0] + hrs[1] + hrs[2] + hrs[3] + hrs[4];
-	totalsur = surcharge[0] + surcharge[1] + surcharge[2] + surcharge[3] + surcharge[4];
+	for (int x = 0; x < cars; x++)
+	{
+		cout << "Number of hours car #"<< xOne << " parked: ";
+		cin >> hours[x];
+		cout << endl;
+		surcharge[x] = CalculateCharges(hours[x]);
+
+		totalHours = totalHours + hours[x];
+		totalSurcharge = totalSurcharge + surcharge[x];
+		xOne++;
+	}
 
 	cout << "Car		Hours		Charge" << endl;
-	for (x = 1; x < cars + 1; x++)
+	for (int y = 0; y < cars; y++)
 	{
-		cout << x << "		" << hrs[x] << "		" << surcharge[x] << endl;
+		cout << yOne << "		" << hours[y] << "		" << surcharge[y] << endl;
+		yOne++;
 	}
-	cout << "Total:		" << totalhrs << "		" << totalsur << endl;
+	cout << "Total:		" << totalHours << "		" << totalSurcharge << endl;
 
 	system("pause");
 	return 0;
